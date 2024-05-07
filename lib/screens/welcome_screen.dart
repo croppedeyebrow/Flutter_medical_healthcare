@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_medicalhealthcare/screens/login_screen.dart";
+import "package:flutter_medicalhealthcare/widgets/navbar_roots.dart";
+import "package:flutter_medicalhealthcare/screens/signup_screen.dart";
 
 class Welcomescreen extends StatelessWidget {
   const Welcomescreen({super.key});
@@ -20,11 +22,8 @@ class Welcomescreen extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (context) =>
-                  //     ));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => NavBarRoots()));
                 },
                 child: Text(
                   "넘어가기",
@@ -90,11 +89,11 @@ class Welcomescreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) =>
-                      //     ));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignupScreen(),
+                          ));
                     },
                     child: Padding(
                       padding:
