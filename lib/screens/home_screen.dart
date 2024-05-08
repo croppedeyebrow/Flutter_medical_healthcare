@@ -1,3 +1,5 @@
+import "dart:ffi";
+
 import "package:flutter/material.dart";
 import "package:flutter_medicalhealthcare/screens/appointment_screen.dart";
 
@@ -198,7 +200,18 @@ class HomeScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => AppointmentScreen()));
+                          builder: (context) => AppointmentScreen(
+                              porfileimg: imgs[index],
+                              doctor: doctors[index],
+                              symptom: symptoms[index])));
+                  // 'doctors'와 'symptoms'는 각각 의사 이름과 증상을 담고 있는 리스트입니다.
+                  // 'index'는 현재 선택된 InkWell의 인덱스입니다.
+                  // 'doctors[index]'와 'symptoms[index]'를 통해 선택된 InkWell에 해당하는 의사 이름과 증상을 가져옵니다.
+
+                  // 이렇게 가져온 의사 이름과 증상을 AppointmentScreen에 전달합니다.
+                  // 이는 AppointmentScreen의 생성자를 통해 이루어집니다.
+                  // 'doctor: doctors[index]'와 'symptom: symptoms[index]'는
+                  // AppointmentScreen의 생성자에 각각 'doctor'와 'symptom' 매개변수로 전달되는 것입니다.
                 },
                 child: Container(
                   margin: EdgeInsets.all(12),
