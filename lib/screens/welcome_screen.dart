@@ -31,12 +31,12 @@ class Welcomescreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 52),
+            SizedBox(height: 32),
             Padding(
               padding: EdgeInsets.all(24),
               child: Image.asset("images/doctors.png"),
             ),
-            SizedBox(height: 52),
+            SizedBox(height: 32),
             Text(
               "나에게 맞는 의사선생님 찾아가기",
               style: TextStyle(

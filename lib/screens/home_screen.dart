@@ -1,9 +1,12 @@
 import "package:flutter/material.dart";
+import "package:flutter_medicalhealthcare/screens/appointment_screen.dart";
 
 class HomeScreen extends StatelessWidget {
-  // const HomeScreen({super.key});
+  HomeScreen({super.key});
 
-  List symptoms = ["가정의학과", "이비인후과", "내과", "정형외과", "피부과"];
+  List<String> symptoms = ["가정의학과", "이비인후과", "내과", "정형외과", "피부과"];
+  List<String> doctors = ["Dr. 손인천", "Dr. 송우희", "Dr. 김현빈", "Dr. 김현수 "];
+  List<String> rating = ["4.2", "4.0", "3.9", "4.4"];
 
   List imgs = [
     "Family.png",
@@ -27,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Text("내 주변 의사선생님",
                     style:
-                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 CircleAvatar(
                   radius: 24,
                   backgroundImage: AssetImage("images/Family.png"),
@@ -127,13 +130,124 @@ class HomeScreen extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 32),
+          SizedBox(height: 26),
           Padding(
             padding: EdgeInsets.only(left: 16),
             child: Text(
-              "불편한 증상이 어떻게 되시나요??",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+              "내원하고 싶은 병원 종류가 어떻게 되시나요??",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black54),
             ),
+          ),
+          SizedBox(
+            height: 80,
+            child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: symptoms.length,
+                // Count를 먼저 선언하고 itemBuilder를 선언해야 함
+                // 인덱스 갯수만큼 인지해야 하기 때문
+                itemBuilder: (context, index) {
+                  return Container(
+                      margin:
+                          EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                      padding: EdgeInsets.symmetric(horizontal: 25),
+                      decoration: BoxDecoration(
+                        color: Color(0xfff4f6fa),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 4,
+                              spreadRadius: 2,
+                              color: Colors.black12)
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          symptoms[index],
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black54),
+                        ),
+                      ));
+                }),
+          ),
+          SizedBox(height: 26),
+          Padding(
+            padding: EdgeInsets.only(left: 15),
+            child: Text(
+              "지금 인기 있는 의사선생님",
+              style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black54),
+            ),
+          ),
+          GridView.builder(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemCount: 4,
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AppointmentScreen()));
+                },
+                child: Container(
+                  margin: EdgeInsets.all(12),
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black12, blurRadius: 4, spreadRadius: 2)
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CircleAvatar(
+                        radius: 38,
+                        backgroundImage: AssetImage("images/${imgs[index]}"),
+                      ),
+                      Text(
+                        symptoms[index],
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54),
+                      ),
+                      Text(
+                        doctors[index],
+                        style: TextStyle(color: Colors.black45),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.star_border,
+                            color: Colors.amberAccent,
+                          ),
+                          Text(
+                            rating[index],
+                            style: TextStyle(color: Colors.black45),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
           )
         ],
       ),

@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_medicalhealthcare/screens/home_screen.dart";
+import "package:flutter_medicalhealthcare/screens/settings_screnn.dart";
 
 class NavBarRoots extends StatefulWidget {
   const NavBarRoots({super.key});
@@ -19,7 +20,7 @@ class _NavBarRootsState extends State<NavBarRoots> {
     // Schedule Screen
     Container(),
     // Settings Screen
-    Container(),
+    SettingsScreen()
   ];
 
   @override
