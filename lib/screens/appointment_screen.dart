@@ -10,6 +10,8 @@ class AppointmentScreen extends StatelessWidget {
   ];
 
   List<String> doctors = ["Dr. 손인천", "Dr. 송우희", "Dr. 김현빈", "Dr. 김현수 "];
+  List<String> rating = ["4.2", "4.0", "3.9", "4.4"];
+
   final String doctor;
   final String symptom;
   final String porfileimg;
@@ -35,214 +37,303 @@ class AppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff7165D6),
-        body: SingleChildScrollView(
-            child: Column(
-          children: [
-            SizedBox(height: 52),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: Stack(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: Color(0xff7165D6),
+      body: SingleChildScrollView(
+          child: Column(
+        children: [
+          SizedBox(height: 52),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 12),
+            child: Stack(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new,
+                          color: Colors.white,
+                          size: 24,
+                        )),
+                    InkWell(
+                        onTap: () {},
+                        child: Icon(
+                          Icons.more_vert_rounded,
+                          color: Colors.white,
+                          size: 24,
+                        ))
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: Colors.white,
-                            size: 24,
-                          )),
-                      InkWell(
-                          onTap: () {},
-                          child: Icon(
-                            Icons.more_vert_rounded,
-                            color: Colors.white,
-                            size: 24,
-                          ))
+                      CircleAvatar(
+                        radius: 34,
+                        backgroundImage: AssetImage("images/$porfileimg"),
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        doctor,
+                        style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        symptom,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      SizedBox(height: 14),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Color(0xff9f97e2),
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.phone,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                          ),
+                          SizedBox(width: 22),
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Color(0xff9f97e2),
+                                shape: BoxShape.circle),
+                            child: Icon(
+                              Icons.chat_bubble,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 30, horizontal: 16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        CircleAvatar(
-                          radius: 34,
-                          backgroundImage: AssetImage("images/$porfileimg"),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          doctor,
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),
-                        ),
-                        SizedBox(height: 8),
-                        Text(
-                          symptom,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
-                        ),
-                        SizedBox(height: 14),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Color(0xff9f97e2),
-                                  shape: BoxShape.circle),
-                              child: Icon(
-                                Icons.phone,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 24),
+          Container(
+            height: MediaQuery.of(context).size.height / 1.5,
+            width: double.infinity,
+            padding: EdgeInsets.only(top: 22, left: 16),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(32),
+                  topRight: Radius.circular(32),
+                )),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  "당신만의 주치의가 되어드리겠습니다.",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
+                SizedBox(height: 16),
+                Text("당신의 증상을 알려주세요,",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey)),
+                Text("당신을 위한 최적의 치료법을 찾아드리겠습니다.",
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey)),
+                SizedBox(height: 12),
+                Row(
+                  children: [
+                    Text("Reviews",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        )),
+                    SizedBox(width: 12),
+                    Icon(Icons.star_border, color: Colors.amberAccent),
+                    Text(
+                      review,
+                      style:
+                          TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                    ),
+                    SizedBox(width: 6),
+                    Text("(140)",
+                        style: TextStyle(
+                            color: Color(0xff7165d6),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500)),
+                    Spacer(),
+                    // Spacer 위젯은 가능한 많은 공간을 차지하도록 확장됩니다.
+                    // 이를 통해 Row 위젯의 오른쪽에 위치한 위젯들을 오른쪽으로 밀어줍니다.
+                    TextButton(
+                        onPressed: () {},
+                        child: Text("See all",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                color: Color(0xff7165d6)))),
+                  ],
+                ),
+                SizedBox(
+                  height: 180,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return Container(
+                            margin: EdgeInsets.all(12),
+                            padding: EdgeInsets.symmetric(vertical: 6),
+                            decoration: BoxDecoration(
                                 color: Colors.white,
-                                size: 24,
+                                borderRadius: BorderRadius.circular(16),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black12,
+                                      blurRadius: 4,
+                                      spreadRadius: 2)
+                                ]),
+                            child: SizedBox(
+                              width: MediaQuery.of(context).size.width / 1.4,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: CircleAvatar(
+                                      radius: 16,
+                                      backgroundImage:
+                                          AssetImage("images/${imgs[index]}"),
+                                    ),
+                                    title: Text(
+                                      "${doctors[index]}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    subtitle: Text("1 hour ago"),
+                                    trailing: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.star_border_outlined,
+                                          color: Colors.amberAccent,
+                                        ),
+                                        Text(
+                                          "${rating[index]}",
+                                          style:
+                                              TextStyle(color: Colors.black54),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      child: Text(
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        "${doctor}에게 정말 감사드립니다.  본인 분야에서 정말 훌륭하고 전문적인 의사입니다. 저에게 큰 도움을 주셨어요",
+                                        style: TextStyle(color: Colors.black),
+                                      ))
+                                ],
                               ),
-                            ),
-                            SizedBox(width: 22),
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                  color: Color(0xff9f97e2),
-                                  shape: BoxShape.circle),
-                              child: Icon(
-                                Icons.chat_bubble,
-                                color: Colors.white,
-                                size: 24,
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                            ));
+                      }),
+                ),
+                SizedBox(height: 12),
+                Text(
+                  "위치",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                ListTile(
+                  leading: Container(
+                    padding: EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                        color: Color(0xfff0eefa), shape: BoxShape.circle),
+                    child: Icon(
+                      Icons.location_on,
+                      color: Color(0xff7165d6),
+                      size: 30,
                     ),
                   ),
-                ],
-              ),
+                  title: Text(
+                    "서울특별시 강남구 역삼동 123-45",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  subtitle: Text("병원 주소", style: TextStyle(color: Colors.grey)),
+                )
+              ],
             ),
-            SizedBox(height: 24),
-            Container(
-              height: MediaQuery.of(context).size.height / 1.5,
-              width: double.infinity,
-              padding: EdgeInsets.only(top: 22, left: 16),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(32),
-                    topRight: Radius.circular(32),
-                  )),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
+          )
+        ],
+      )),
+      bottomNavigationBar: Container(
+          padding: EdgeInsets.all(16),
+          height: 130,
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(color: Colors.black26, blurRadius: 4, spreadRadius: 2)
+          ]),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "당신만의 주치의가 되어드리겠습니다.",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    "진료 상담 비용",
+                    style: TextStyle(color: Colors.black54),
                   ),
-                  SizedBox(height: 16),
-                  Text("당신의 증상을 알려주세요,",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey)),
-                  Text("당신을 위한 최적의 치료법을 찾아드리겠습니다.",
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey)),
-                  SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Text("Reviews",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          )),
-                      SizedBox(width: 12),
-                      Icon(Icons.star_border, color: Colors.amberAccent),
-                      Text(
-                        review,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
-                      ),
-                      SizedBox(width: 6),
-                      Text("(140)",
-                          style: TextStyle(
-                              color: Color(0xff7165d6),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500)),
-                      Spacer(),
-                      // Spacer 위젯은 가능한 많은 공간을 차지하도록 확장됩니다.
-                      // 이를 통해 Row 위젯의 오른쪽에 위치한 위젯들을 오른쪽으로 밀어줍니다.
-                      TextButton(
-                          onPressed: () {},
-                          child: Text("See all",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
-                                  color: Color(0xff7165d6)))),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 180,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return Container(
-                              margin: EdgeInsets.all(12),
-                              padding: EdgeInsets.symmetric(vertical: 6),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(16),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.black12,
-                                        blurRadius: 4,
-                                        spreadRadius: 2)
-                                  ]),
-                              child: SizedBox(
-                                width: MediaQuery.of(context).size.width / 1.4,
-                                child: Column(
-                                  children: [
-                                    ListTile(
-                                      leading: CircleAvatar(
-                                        radius: 16,
-                                        backgroundImage:
-                                            AssetImage("images/${imgs[index]}"),
-                                      ),
-                                      title: Text(
-                                        "${doctors[index]}",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      subtitle: Text("1 hour ago"),
-                                      trailing: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.star_border_outlined,
-                                            color: Colors.amberAccent,
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ));
-                        }),
-                  ),
+                  Text(
+                    "\₩6800",
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
-            )
-          ],
-        )));
+              SizedBox(height: 6),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(vertical: 18),
+                  decoration: BoxDecoration(
+                      color: Color(0xff7165d6),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Center(
+                    child: Text(
+                      "진료 상담 신청 및 예약하기",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          )),
+    );
   }
 }
