@@ -1,6 +1,7 @@
 import "dart:ffi";
 
 import "package:flutter/material.dart";
+import "package:flutter/widgets.dart";
 import "package:flutter_medicalhealthcare/screens/appointment_screen.dart";
 
 class HomeScreen extends StatelessWidget {
@@ -12,9 +13,9 @@ class HomeScreen extends StatelessWidget {
 
   List imgs = [
     "Family.png",
-    "Orthopedics.png",
-    "Dermatology.png",
     "Otorhinolaryngology.png",
+    "Dermatology.png",
+    "Orthopedics.png",
     "medicine.png"
   ];
 
@@ -201,9 +202,11 @@ class HomeScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => AppointmentScreen(
-                              porfileimg: imgs[index],
-                              doctor: doctors[index],
-                              symptom: symptoms[index])));
+                                porfileimg: imgs[index],
+                                doctor: doctors[index],
+                                symptom: symptoms[index],
+                                review: rating[index],
+                              )));
                   // 'doctors'와 'symptoms'는 각각 의사 이름과 증상을 담고 있는 리스트입니다.
                   // 'index'는 현재 선택된 InkWell의 인덱스입니다.
                   // 'doctors[index]'와 'symptoms[index]'를 통해 선택된 InkWell에 해당하는 의사 이름과 증상을 가져옵니다.
