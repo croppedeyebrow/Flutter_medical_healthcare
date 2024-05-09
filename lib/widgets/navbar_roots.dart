@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "package:flutter_medicalhealthcare/screens/home_screen.dart";
+import "package:flutter_medicalhealthcare/screens/messages_screen.dart";
 import "package:flutter_medicalhealthcare/screens/schedule_screen.dart";
 import "package:flutter_medicalhealthcare/screens/settings_screnn.dart";
 
@@ -17,7 +18,7 @@ class _NavBarRootsState extends State<NavBarRoots> {
     // HomeScreen(),
     HomeScreen(),
     // Messages Screen
-    Container(),
+    MessageScreen(),
     // Schedule Screen
     ScheduleScreen(),
     // Settings Screen
