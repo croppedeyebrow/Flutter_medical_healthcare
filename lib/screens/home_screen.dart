@@ -7,16 +7,24 @@ import "package:flutter_medicalhealthcare/screens/appointment_screen.dart";
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  List<String> symptoms = ["가정의학과", "이비인후과", "내과", "정형외과", "피부과"];
-  List<String> doctors = ["Dr. 손인천", "Dr. 송우희", "Dr. 김현빈", "Dr. 김현수 "];
+  List<String> symptoms = ["가정의학과", "이비인후과", "내과", "정형외과", "피부과", "산부인과"];
+  List<String> doctors = [
+    "Dr. 손인천",
+    "Dr. 송우희",
+    "Dr. 김현빈",
+    "Dr. 김현수 ",
+    "Dr. 이재성",
+    "Dr. 허한비"
+  ];
   List<String> rating = ["4.2", "4.0", "3.9", "4.4"];
 
   List imgs = [
     "Family.png",
     "Otorhinolaryngology.png",
-    "Dermatology.png",
+    "medicine.png",
     "Orthopedics.png",
-    "medicine.png"
+    "Dermatology.png",
+    "birth.png",
   ];
 
   @override
